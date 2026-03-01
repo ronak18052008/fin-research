@@ -9,6 +9,7 @@ import { Image } from '@/components/ui/image';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ForgotPasswordModal from '@/components/ForgotPasswordModal';
 
 // --- Types & Interfaces ---
 interface FeatureItem {
@@ -89,6 +90,7 @@ export default function HomePage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isForgotPasswordOpen, setIsForgotPasswordOpen] = useState(false);
 
   // --- Logic Preservation ---
   const handleLogin = async (e: React.FormEvent) => {
@@ -290,7 +292,8 @@ export default function HomePage() {
                     <button
                       type="button"
                       className="text-xs font-medium text-primary/70 hover:text-primary hover:underline transition-colors"
-                      onClick={() => setError('Password recovery is not available in demo mode')}
+                      onClick={() => setIsForgotPasswordOpen(true)}
+                      aria-label="Open forgot password form"
                     >
                       Forgot Password?
                     </button>
@@ -358,6 +361,12 @@ export default function HomePage() {
       </main>
 
       <Footer />
+
+      {/* Forgot Password Modal */}
+      <ForgotPasswordModal 
+        isOpen={isForgotPasswordOpen} 
+        onClose={() => setIsForgotPasswordOpen(false)} 
+      />
     </div>
   );
 }
