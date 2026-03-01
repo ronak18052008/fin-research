@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Image } from '@/components/ui/image';
+import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -82,6 +83,7 @@ const MarketTicker = () => {
 };
 
 export default function HomePage() {
+  const navigate = useNavigate();
   // --- Canonical Data Sources (Preserved) ---
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -327,9 +329,9 @@ export default function HomePage() {
                   <button
                     type="button"
                     className="text-primary font-semibold hover:text-secondary transition-colors"
-                    onClick={() => setError('Account creation is not available in demo mode')}
+                    onClick={() => navigate('/register')}
                   >
-                    Request Access
+                    Create Account
                   </button>
                 </p>
               </div>
